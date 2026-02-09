@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeff7;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2);
+            max-width: 400px;
+            z-index: 10;
+        }
+
+        /* Your Photo Styling */
+        .main-photo {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            border: 5px solid #ff4d6d;
+            margin-bottom: 20px;
+        }
+
+        h1 { color: #d63384; font-size: 1.8rem; }
+        
+        /* The Message Styling */
+        .personal-message {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #yesBtn { background-color: #ff4d6d; color: white; }
+        #noBtn { 
+            background-color: #adb5bd; 
+            color: white; 
+            position: absolute; 
+        }
+
+        #success { display: none; }
+    </style>
+</head>
+<body>
+
+    <audio id="vdayMusic" loop>
+        <source src="lovesong.mpeg" type="audio/mpeg">
+    </audio>
+
+    <div class="container" id="main-card">
+        <img src="cutephoto.jpg" alt="Us" class="main-photo">
+        
+        <h1>Will you be my Valentine?</h1>
+
+        <p class="personal-message">
+            "Muthe.. I know you are tired of reading but you should read this. My love for you  is pure and you should know Many a times I cannot simply show But you stay in my heart every time.Together we are so destined. My love for you will never change Coz I gave you my all and my heart. Every day our love grows stronger. I cant imagine a life without you in it. I hope you feel the same... Iam proud to be yours. I love you for who you are. You make my world brighter. I hope we can  be like this forever. Love you 🫀Every day with you feels like a dream. I couldn't imagine spending this day with anyone else. You mean the world to me!"
+        </p>
+
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">YES</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
+        </div>
+    </div>
+
+    <div id="success">
+        <h1 style="font-size: 3.5rem;">YAY! ❤️</h1>
+        <p style="font-size: 1.5rem;">I knew you'd say yes!</p>
+        <img src="WhatsApp Image 2026-02-08 at 6.22.12 PM (1).jpeg width="300">
+    </div>
+
+    <script>
+        const music = document.getElementById('vdayMusic');
+
+        function moveButton() {
+            // Start music on first attempt to click 'No' (Interaction)
+            music.play();
+            
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function celebrate() {
+            music.play(); // Start music if they click Yes immediately
+            document.getElementById('main-card').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            confetti();
+        }
+    </script>
+</body>
+</html>
