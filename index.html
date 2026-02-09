@@ -3,123 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You ❤️</title>
+    <title>A Special Surprise</title>
     <style>
         body {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
-            background-color: #ffeff7;
+            background-color: #fff0f3;
             font-family: 'Arial', sans-serif;
             text-align: center;
-            overflow: hidden;
         }
 
         .container {
             background: white;
             padding: 30px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2);
-            max-width: 400px;
-            z-index: 10;
-        }
-
-        /* Your Photo Styling */
-        .main-photo {
-            width: 100%;
-            max-width: 300px;
             border-radius: 20px;
-            border: 5px solid #ff4d6d;
-            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 90%;
         }
 
-        h1 { color: #d63384; font-size: 1.8rem; }
+        img { width: 100%; max-width: 250px; border-radius: 15px; margin-bottom: 20px; }
         
-        /* The Message Styling */
-        .personal-message {
-            color: #555;
-            font-style: italic;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            height: 50px;
-        }
-
+        h1 { color: #ff4d6d; }
+        .hidden { display: none; }
+        
+        .btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        
         button {
-            padding: 12px 30px;
-            font-size: 1.1rem;
+            padding: 12px 25px;
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 1rem;
             transition: 0.3s;
         }
 
-        #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { 
-            background-color: #adb5bd; 
-            color: white; 
-            position: absolute; 
+        .yes-btn { background-color: #ff4d6d; color: white; }
+        .no-btn { background-color: #6c757d; color: red; }
+        .continue-btn { background-color: #ff8fa3; color: white; width: 100%; margin-top: 20px; }
+
+        /* Gift Box Styling */
+        .gift-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        #success { display: none; }
+        .gift-box {
+            background: #ffb3c1;
+            padding: 20px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .gift-box:hover { transform: scale(1.05); }
+        .gift-text { font-size: 0.9rem; color: #ff4d6d; margin-top: 5px; display: block; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <audio id="vdayMusic" loop>
-        <source src="lovesong.mpeg" type="audio/mpeg">
-    </audio>
-
-    <div class="container" id="main-card">
-        <img src="cutephoto.jpg" alt="Us" class="main-photo">
-        
-        <h1>Will you be my Valentine?</h1>
-
-        <p class="personal-message">
-            "Muthe.. I know you are tired of reading but you should read this. My love for you  is pure and you should know Many a times I cannot simply show But you stay in my heart every time.Together we are so destined. My love for you will never change Coz I gave you my all and my heart. Every day our love grows stronger. I cant imagine a life without you in it. I hope you feel the same... Iam proud to be yours. I love you for who you are. You make my world brighter. I hope we can  be like this forever. Love you 🫀Every day with you feels like a dream. I couldn't imagine spending this day with anyone else. You mean the world to me!"
-        </p>
-
-        <div class="buttons">
-            <button id="yesBtn" onclick="celebrate()">YES</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
+    <div id="step1" class="container">
+        <img id="mainPhoto" src="WhatsApp Image 2026-02-08 at 6.22.13 PM.jpeg alt="Cute">
+        <h1 id="questionText">Will you be my Valentine?</h1>
+        <div class="btn-group">
+            <button class="yes-btn" onclick="goToStep2()">Yes</button>
+            <button class="no-btn" onclick="showAngry()">No</button>
         </div>
     </div>
 
-    <div id="success">
-        <h1 style="font-size: 3.5rem;">YAY! ❤️</h1>
-        <p style="font-size: 1.5rem;">I knew you'd say yes!</p>
-        <img src="WhatsApp Image 2026-02-08 at 6.22.12 PM (1).jpeg width="300">
+    <div id="step2" class="container hidden">
+        <img src="cutephoto.jpg">
+        <h1>Yay! I knew you'd say yes! ❤️</h1>
+        <button class="continue-btn" onclick="goToStep3()">Continue</button>
+    </div>
+
+    <div id="step3" class="container hidden">
+        <h1>For My Favorite Person</h1>
+        <p id="personalMessage">
+            "Muthe.. I know you are tired of reading but you should read this.My love for you  is pure and you should know Many a times I cannot simply show But you stay in my heart every time.Together we are so destined. My love for you will never change Coz I gave you my all and my heart. Every day our love grows stronger. I cant imagine a life without you in it. I hope you feel the same... Iam proud to be yours. I love you for who you are. You make my world brighter. I hope we can  be like this forever. Love you 🫀 moment with you is a gift. You make my world so much brighter just by being in it. Here is a little something for you..."
+        </p>
+        
+        <div class="gift-container">
+            <div class="gift-box" onclick="revealGift(this, '🌸')">🎁<span class="a flower for the most beautiful soul">Open me</span></div>
+            <div class="gift-box" onclick="revealGift(this, '💋')">🎁<span class="a thousand kisses for you">Open me</span></div>
+            <div class="gift-box" onclick="revealGift(this, '❤️')">🎁<span class="i love you more than words can say">Open me</span></div>
+        </div>
+        <p id="giftCaption" style="margin-top: 15px; font-weight: bold; color: #d63384;"></p>
     </div>
 
     <script>
-        const music = document.getElementById('vdayMusic');
+        // Audio setup (optional - you can add a link)
+        const music = new Audio('lovesong.mpeg');
 
-        function moveButton() {
-            // Start music on first attempt to click 'No' (Interaction)
-            music.play();
-            
-            const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+        function showAngry() {
+            // Changes photo to an angry one if they click NO
+            document.getElementById('mainPhoto').src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZidXpueGZidXpueGZidXpueGZidXpueGZidXpueGZidXAmZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/3o7TKnO6Wve6502iJ2/giphy.gif";
+            document.getElementById('questionText').innerText = "Wait... why no?! 😤 Click YES!";
         }
 
-        function celebrate() {
-            music.play(); // Start music if they click Yes immediately
-            document.getElementById('main-card').style.display = 'none';
-            document.getElementById('success').style.display = 'block';
-            confetti();
+        function goToStep2() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            music.play();
+        }
+
+        function goToStep3() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
+
+        function revealGift(element, emoji) {
+            element.innerHTML = emoji;
+            let caption = "";
+            if(emoji === '🌸') caption = "A flower for the most beautiful soul!";
+            if(emoji === '💋') caption = "A thousand kisses coming your way!";
+            if(emoji === '❤️') caption = "I love you more than words can say!";
+            document.getElementById('giftCaption').innerText = caption;
         }
     </script>
 </body>
